@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { AppRouter } from "./components";
+import { AppRouter, Navigation } from "./components";
 
 const App = () => {
     return (
         <BrowserRouter>
+            <Navigation />
             <AppRouter />
         </BrowserRouter>
     );
