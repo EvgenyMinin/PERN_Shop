@@ -4,3 +4,4 @@ export * from "./TypeBar";
 export * from "./BrandBar";
 export * from "./DeviceItem";
 export * from "./DeviceList";
+export * from "./CreateModal";
