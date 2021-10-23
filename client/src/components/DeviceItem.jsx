@@ -1,17 +1,17 @@
 import React from "react";
 import { Card, Col, Image } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import star from "../images/star.png";
-import { DEVICE_ROUTE } from '../utils/consts';
+import { DEVICE_ROUTE } from "../utils/consts";
 
-export const DeviceItem = ({ device: {id, img, rating, name} }) => {
+export const DeviceItem = ({ device: { id, img, rating, name } }) => {
     const history = useHistory();
 
     return (
-        <Col md={3} className='mt-4' onClick={() => history.push(`${DEVICE_ROUTE}/${id}`)}>
+        <Col md={3} className="mt-4" onClick={() => history.push(`${DEVICE_ROUTE}/${id}`)}>
             <Card style={{ width: 150, cursor: "pointer" }} border="light">
-                <Image src={img} />
+                <Image width={150} height={150} src={`${process.env.REACT_APP_API_URL}/${img}`} />
                 <div className="d-flex justify-content-between align-items-center text-black-50 mt-1">
                     <div>Samsung...</div>
                     <div className="d-flex align-items-center">
