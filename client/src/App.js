@@ -18,6 +18,7 @@ const App = observer(() => {
                 user.setIsAuth(true);
             })
             .finally(() => setLoading(false));
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (loading) {

@@ -3,8 +3,9 @@ import { Button, Col, Dropdown, Form, Modal, Row } from "react-bootstrap";
 
 import { Context } from "..";
 
-export const CreateModal = ({ title, placeholder, show, onHide }) => {
+export const CreateModal = ({ title, placeholder, show, onHide, onCreate }) => {
     const { device } = useContext(Context);
+    const [value, setValue] = useState("");
     const [info, setInfo] = useState([]);
 
     const addInfo = () => {
@@ -13,6 +14,11 @@ export const CreateModal = ({ title, placeholder, show, onHide }) => {
 
     const removeInfo = (number) => {
         setInfo(info.filter((item) => item.number !== number));
+    };
+
+    const createHandler = () => {
+        onCreate(value);
+        setValue("");
     };
 
     return (
@@ -56,13 +62,15 @@ export const CreateModal = ({ title, placeholder, show, onHide }) => {
                                         <Form.Control placeholder="Введите описание устройства" />
                                     </Col>
                                     <Col md={4}>
-                                        <Button variant="outline-danger" onClick={() => removeInfo(number)}>Удалить</Button>
+                                        <Button variant="outline-danger" onClick={() => removeInfo(number)}>
+                                            Удалить
+                                        </Button>
                                     </Col>
                                 </Row>
                             ))}
                         </>
                     ) : (
-                        <Form.Control placeholder={placeholder} />
+                        <Form.Control value={value} onChange={(e) => setValue(e.target.value)} placeholder={placeholder} />
                     )}
                 </Form>
             </Modal.Body>
@@ -70,7 +78,7 @@ export const CreateModal = ({ title, placeholder, show, onHide }) => {
                 <Button variant="outline-danger" onClick={onHide}>
                     Закрыть
                 </Button>
-                <Button variant="outline-success" onClick={onHide}>
+                <Button variant="outline-success" onClick={createHandler}>
                     Добавить
                 </Button>
             </Modal.Footer>
