@@ -11,6 +11,11 @@ export const Navigation = observer(() => {
     const { user } = useContext(Context);
     const history = useHistory();
 
+    const logOutHandler = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+    };
+
     return (
         <Navbar bg="light" variant="light">
             <Container>
@@ -22,13 +27,13 @@ export const Navigation = observer(() => {
                         <Button variant="secondary" onClick={() => history.push(ADMIN_ROUTE)}>
                             Админ панель
                         </Button>
-                        <Button variant="secondary" onClick={() => history.push(LOGIN_ROUTE)} className="ms-4">
+                        <Button variant="secondary" onClick={logOutHandler} className="ms-4">
                             Выйти
                         </Button>
                     </Nav>
                 ) : (
                     <Nav className="ml-auto">
-                        <Button variant="secondary" onClick={() => user.setIsAuth(true)}>
+                        <Button variant="secondary" onClick={() => history.push(LOGIN_ROUTE)}>
                             Авторизация
                         </Button>
                     </Nav>
